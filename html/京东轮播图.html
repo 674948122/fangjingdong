@@ -1,0 +1,263 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>标题</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<link rel="stylesheet" type="text/css" href="../css/reset.css">
+<link rel="stylesheet" type="text/css" href="../css/zuoyou/iconfont.css">
+<style>
+	*{margin:0;padding:0;font-size:12px;
+		color:#666;}
+	.slider_main{
+		position: relative;
+    	margin-bottom: 10px;
+   	 	height: 340px;
+   	 	width: 790px;
+	}
+	.slider_list{
+		overflow: hidden;
+    	position: absolute;
+   		width: 100%;
+    	height: 100%;
+	}
+	.slider_item{
+		overflow: hidden;
+    	position: absolute;
+    	width: 100%;
+    	height: 100%;
+    	background-color:#fff;
+	}
+	.slider_item_img{
+		display:block;
+		width: 100%;
+		height:100%;
+		position: absolute;
+	}
+	.slider_indicator{
+		position: absolute;
+		z-index: 3;
+		left: 50%;
+		bottom: 20px;
+		font-size: 0;
+		padding: 4px 8px;
+		border-radius: 12px;
+		background-color: hsla(0,0%,100%,.3);
+		margin-left: -91px;
+    	display: block;
+	}
+	.slider_indicator_btn{
+		display: inline-block;
+		margin-right: 10px;
+		width: 12px;
+		height: 12px;
+		border-radius: 100%;
+		background-color: #fff;
+	}
+	.slider_indicator_btn_last {
+		margin-right: 0;
+	}
+	.silder_indicator_btn_active{
+		background-color:#db192a;
+	}
+	.slider_control_prev{
+		left:0;
+	}
+	.slider_control_item{
+		/* display:none; */
+		position: absolute;
+		z-index:1;
+		top:50%;
+		margin-top:-30px;
+		width: 30px;
+		height:60px;
+		background-color:#333;
+		 background-color:rgba(0,0,0,0.1); 
+		line-height:60px;
+		text-align:center;
+	}
+	.icon-zuo{
+		font-size:14px;
+		color:#fff;
+	}
+	.slider_control_next{
+		right:0;
+	}
+	
+	.icon-iconfonticonfont10shanchu{
+		color:#fff;
+		font-size: 14px;
+	}
+	.z{
+		z-index: 0;
+	}
+	.b{
+		background-color: #db192a;
+	}
+	.f{
+		z-index: 1;
+	}
+
+</style>
+</head>
+<body>
+	<div class="slider_main">
+		<ul class="slider_list">
+			<li class="slider_item">
+				<a href="###" class="slider_item_lk">
+					<img src="../images/bg1.jpg" alt="" class="slider_item_img f">
+				</a>
+			</li>
+			<li class="slider_item">
+				<a href="###" class="slider_item_lk">
+					<img src="../images/bg2.jpg" alt="" class="slider_item_img">
+				</a>
+			</li>
+			<li class="slider_item">
+				<a href="###" class="slider_item_lk">
+					<img src="../images/bg3.jpg" alt="" class="slider_item_img">
+				</a>
+			</li>
+			<li class="slider_item">
+				<a href="###" class="slider_item_lk">
+					<img src="../images/bg4.jpg" alt="" class="slider_item_img">
+				</a>
+			</li>
+			<li class="slider_item">
+				<a href="###" class="slider_item_lk">
+					<img src="../images/bg5.jpg" alt="" class="slider_item_img">
+				</a>
+			</li>
+			<li class="slider_item">
+				<a href="###" class="slider_item_lk">
+					<img src="../images/bg6.jpg" alt="" class="slider_item_img">
+				</a>
+			</li>
+			<li class="slider_item">
+				<a href="###" class="slider_item_lk">
+					<img src="../images/bg7.jpg" alt="" class="slider_item_img">
+				</a>
+			</li>
+			<li class="slider_item">
+				<a href="###" class="slider_item_lk">
+					<img src="../images/bg8.jpg" alt="" class="slider_item_img z">
+				</a>
+			</li>
+		</ul>
+		<div class="slider_indicator">
+			<i class="slider_indicator_btn b"></i>
+			<i class="slider_indicator_btn"></i>
+			<i class="slider_indicator_btn"></i>
+			<i class="slider_indicator_btn"></i>
+			<i class="slider_indicator_btn"></i>
+			<i class="slider_indicator_btn"></i>
+			<i class="slider_indicator_btn"></i>
+			<i class="slider_indicator_btn slider_indicator_btn_last"></i>
+		</div>
+		<a href="###" class="slider_control_item slider_control_prev">
+			<i class="iconfont icon-zuo"></i>
+		</a>
+		<a href="###" class="slider_control_item slider_control_next">
+			<i class="iconfont icon-iconfonticonfont10shanchu"></i>
+		</a>
+	</div>
+</body>
+<script type="text/javascript">
+var img=document.getElementsByClassName('slider_item');
+var btn=document.getElementsByClassName('slider_indicator_btn');
+var left=document.getElementsByClassName('icon-zuo')[0];
+var right=document.getElementsByClassName('icon-iconfonticonfont10shanchu')[0];
+var time=null,time2=null,time3=null;
+var num=0;
+//移上变图
+function a(){
+	for (var i = 0; i < img.length; i++) {
+		btn[i].onmouseover=function(){
+			clearInterval(time2);
+			clearInterval(time);
+			var b=0.5;
+			for (var i = 0; i < img.length; i++) {
+				if (btn[i]==this) {
+					var s=i;
+					num=i;
+					time=setInterval(function(){
+						for (var a=0; a < img.length; a++) {
+							img[a].style.opacity='0.5';
+						 	img[a].style.zIndex='0';
+						 	btn[a].style.backgroundColor='#fff';
+						}
+						b+=1/25;
+						if (b>=1) {
+							b=1;
+							clearInterval(time);
+						}
+						img[s].style.opacity=b;
+						img[s].style.zIndex='1';
+						btn[s].style.backgroundColor='#db192a';
+					},30)
+				}
+			}
+		}
+		btn[i].onmouseout=function(){
+			time2=setInterval(automove,2000);
+		}
+	}
+}
+//结束
+//走一步
+function move(num){
+	var b=0.5;
+	clearInterval(time);
+	for (var i = 0; i < btn.length; i++) {
+		img[i].style.opacity='0.5';
+		img[i].style.zIndex='0';
+		btn[i].style.backgroundColor='#fff';
+	}
+	btn[num].style.backgroundColor='#db192a';
+	time=setInterval(function(){
+		b+=1/50;
+		if (b>=1) {
+			b=1;
+			clearInterval(time);
+		}
+		img[num].style.opacity=b;
+		img[num].style.zIndex='1';
+
+	},25)
+}
+//结束
+function automove(){
+	num++;
+	if(num>=img.length){
+		num=0;
+	};
+	move(num);
+}
+time2=setInterval(automove,2000);
+a();
+//
+left.onclick=function(){
+	clearInterval(time);
+	clearInterval(time2);
+	clearInterval(time3);
+	num--;
+	if (num<0) {
+		num=7;
+	}
+	move(num);
+	time2=setInterval(automove,2000);
+}
+right.onclick=function(){
+	clearInterval(time);
+	clearInterval(time2);
+	clearInterval(time3);
+	num++;
+	if (num>=7) {
+		num=0;
+	}
+	move(num);
+	time2=setInterval(automove,2000);
+}
+</script>
+</html>
